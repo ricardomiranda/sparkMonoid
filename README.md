@@ -1,4 +1,4 @@
-Project sparkMonoid is an example of using a monoid. Lets look at a function that concatenates characters (example from [F# for fun and profit](https://fsharpforfunandprofit.com/posts/monoids-part3/ "F# for fun and profit")):
+Project sparkMonoid is an example of using a monoid. We chose the Spark framework because it has function aggregate for non-monaidic operations and function reduce for monadic operations. Lets look at a function that concatenates characters (example from [F# for fun and profit](https://fsharpforfunandprofit.com/posts/monoids-part3/ "F# for fun and profit")):
 
 ```
 'a' + 'b' => what should I do?
