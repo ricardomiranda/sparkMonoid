@@ -16,10 +16,7 @@ case class Aggregate(charactersRDD: RDD[Char],
 object Aggregate {
   def apply(cs: Seq[Char], 
 	    spark: SparkSession) = {
-    val size = 1
-    val charactersRDD =
-      spark.sparkContext.parallelize(cs)
-
+    val charactersRDD = spark.sparkContext.parallelize(cs)
     new Aggregate(charactersRDD, spark)
   }
 }
