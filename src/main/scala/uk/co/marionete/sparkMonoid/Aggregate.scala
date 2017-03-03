@@ -1,26 +1,25 @@
-package com.marionete.magicsquare
+package uk.co.marionete.sparkMonoid
 
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.rdd._
 
-case class Aggregate(characters: RDD[Char]) {
+case class Aggregate(charactersRDD: RDD[Char],
+	             spark: SparkSession) {
+  def agg: String = {
+    charactersRDD.aggregate("") (
+	    (acc, c) => acc + String.valueOf(c),
+	    (acc1, acc2) => acc1 + acc2
+    )
+  }
 }
 
 object Aggregate {
-	/*
-  def apply(populationSize: Int, 
-            chromosomeSize: Long,
-	    r: Random,
+  def apply(cs: Seq[Char], 
 	    spark: SparkSession) = {
-    def individuals(i: Long, list: Seq[Individual]): Seq[Individual] = 
-      i match {
-        case 0 => list
-	case _ => individuals(i-1, Individual(chromosomeSize, r) +: list)
-    }
-    val individualsRDD =
-      spark.sparkContext.parallelize((1 to populationSize).map(_ => (-1, Individual(chromosomeSize, r))))
+    val size = 1
+    val charactersRDD =
+      spark.sparkContext.parallelize(cs)
 
-    new Population(individualsRDD, spark)
+    new Aggregate(charactersRDD, spark)
   }
-  */
 }
