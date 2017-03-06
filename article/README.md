@@ -34,15 +34,15 @@ Afterwards I will show how to transform this operation into a monoid. Having a m
 
 Suppose you want to join characters:
 
-'''
+```
 'a' + 'b' => _What should I get?_
-'''
+```
 
 The first solution that comes to mind is to create a string:
 
-'''
+```
 'a' + 'b' => "ab"
-'''
+```
 
 The above operation is not a monoid, there is no closure on this operation. The operation's result is not of the same type as its arguments.
 
@@ -50,7 +50,7 @@ The above operation is not a monoid, there is no closure on this operation. The 
 
 To use the non monoid described above in Spark we need [aggregate][1]:
 
-'''
+```
 def aggregate[U](zeroValue: U)(seqOp: (U, T) ⇒ U, combOp: (U, U) ⇒ U)(implicit arg0: ClassTag[U]): U
 
 Aggregate the elements of each partition, and then the results for all the partitions, using given combine functions and a neutral "zero value". This function can return a different result type, U, than the type of this RDD, T. Thus, we need one operation for merging a T into an U and one operation for merging two U's, as in scala.TraversableOnce. Both of these functions are allowed to modify and return their first argument instead of creating a new U to avoid memory allocation.
@@ -61,11 +61,11 @@ zeroValue: the initial value for the accumulated result of each partition for th
 seqOp: an operator used to accumulate results within a partition
 
 combOp: an associative operator used to combine results from different partitions
-'''
+```
 
 A possible implementation would be:
 
-'''scala
+```scala
 package uk.co.marionete.sparkMonoid
 
 import org.apache.spark.sql.SparkSession
@@ -86,7 +86,7 @@ object Aggregate {
     new Aggregate(charactersRDD, spark)
   }
 }
-'''
+```
 
 (c) Ricardo C. Miranda, 2017.
 
