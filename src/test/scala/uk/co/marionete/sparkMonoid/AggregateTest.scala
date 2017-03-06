@@ -6,7 +6,7 @@ import org.apache.spark.sql.SparkSession
 class AggreateTest extends WordSpec with Matchers {
   def sparkStart: SparkSession = {
     val spark: SparkSession = SparkSession.builder()
-      .appName("Testing Population Magic Squares wiht Spark")
+      .appName("Testing joning characters with Spark's aggregate")
       .master("local[*]")
       .getOrCreate()
     spark.sparkContext.setLogLevel("WARN")
