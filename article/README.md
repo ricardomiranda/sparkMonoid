@@ -33,7 +33,7 @@ Here I will present a very simple operation, that is not a monoid, and use it in
 Suppose you want to join characters:
 
 ```
-'a' + 'b' => __What should I get?__
+'a' + 'b' => What should I get?
 ```
 
 The first solution that comes to mind is to create a string:
