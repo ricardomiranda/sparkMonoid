@@ -130,9 +130,9 @@ object Monadic {
 
 ## Conclusions ##
 
-I am pretty confident you agree with me that the reduce version if easier to read and understand than the aggregate version. I hope the next time you are about to write an aggregate function you will pause and consider the reduce function. Lets use category theory in the real world.
+I am pretty confident you agree with me that the reduce version is easier to read and understand than the aggregate version. I hope the next time you are about to write an aggregate function you will pause and consider the reduce function. Lets use category theory in the real world!
 
-As a final remark I want to tell you that this code is available at [GitHub][3].
+As a final remark I want to tell you that this code is available at [GitHub][3] with tests included.
 
 (c) Ricardo C. Miranda, 2017.
 
