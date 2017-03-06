@@ -42,11 +42,11 @@ The first solution that comes to mind is to create a string:
 'a' + 'b' => "ab"
 ```
 
-The above operation is not a monoid, there is no closure on this operation. The operation's result is not of the same type as its arguments.
+The above operation is not a monoid; there is no closure on this operation. The operation's result is not of the same type as its arguments.
 
 ### Using Spark's aggregate function ###
 
-To use the non monoid described above in Spark we need [aggregate][1]:
+To use the non monoid above described in Spark we need [aggregate][1]:
 
 ```
 def aggregate[U](zeroValue: U)(seqOp: (U, T) ⇒ U, combOp: (U, U) ⇒ U)(implicit arg0: ClassTag[U]): U
@@ -89,6 +89,34 @@ object Aggregate {
   def apply(cs: Seq[Char], spark: SparkSession) = {
     val charactersRDD = spark.sparkContext.parallelize(cs)
     new Aggregate(charactersRDD, spark)
+  }
+}
+```
+
+### Using Spark's reduce ###
+
+A possible solution to transform our join into a monoid is to use lists:
+
+```
+['a'] ++ ['b'] => ['a', 'b']
+```
+
+Now that we have a monoid - remember that concatenation of lists is a monoid - it is possible to use Spark's reduce function. Lets look at a possible implementation in Scala.
+
+```scala
+package uk.co.marionete.sparkMonoid
+
+import org.apache.spark.sql.SparkSession
+import org.apache.spark.rdd._
+
+case class Monadic(charactersRDD: RDD[Seq[Char]], spark: SparkSession) {
+  def red: String = this.charactersRDD.reduce{ (x, y) => x ++ y }.mkString
+}
+
+object Monadic {
+  def apply(cs: Seq[Char], spark: SparkSession) = {
+    val charactersRDD = spark.sparkContext.parallelize(cs.map(Seq(_)))
+    new Monadic(charactersRDD, spark)
   }
 }
 ```
