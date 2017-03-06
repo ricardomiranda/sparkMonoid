@@ -2,25 +2,25 @@
 
 ## Introduction ##
 
-This is a short intro to *monoids*. Often times, when I speak with friends and colleagues about [category theory][2], I am asked: "This is all very nice but what is in it for? Will I ever use it?". This article aims at showing a compelling example of a real world problem where a monoid is a much better approach than a naive, non monoid approach.
+This is a short intro to **monoids**. Often times, when I speak with friends and colleagues about [category theory][2], I am asked: "This is all very nice but what is in it for me? Will I ever use it?". This article aims at showing a compelling example of a real world problem where a monoid is a much better approach than a naive, non monoid approach.
 
 ## So, what is a monoid? ##
 
 A monoid is a pure operation that two arguments and has the following characteristics:
 
-- *closure*, the operation over two elements produces an element of the same kind;
+- **closure**, the operation over two elements produces an element of the same kind;
 
-- *associativity*, if you have a set of ordered elements to combine, it produces the same result regardless of the order you do the pairwise operations; and
+- **associativity**, if you have a set of ordered elements to combine, it produces the same result regardless of the order you do the pairwise operations; and
 
-- *identity element*, there is an element that, operated with any other element, left or right, produces the same element.
+- **identity element**, there is an element that, operated with any other element, left or right, produces the same element.
 
 Addition of Natural numbers is a monoid. It follows the three above rules: addition of two integers produces an integer; it is associative and zero is the identity element. Addition is also commutative but that is not necessary to be a monoid. The identity element is the empty list.
 
 Concatenating lists i also a monoid operation. When you concatenate two lists you get a list. If you have lots of list to concatenate you can do it in any order you want as long as you keep their relative positions.
 
-If you have closure and associativity but not an identity element you have a *semigroup*.
+If you have closure and associativity but not an identity element you have a **semigroup**.
 
-## Advantages of having a *monoid* ##
+## Advantages of having a **monoid** ##
 
 A monoid is a parallelizable operation. If you have monoid and a list of elements to whom you want to apply it, you can shank it in any way, apply the operation to each shank, and later on collect the partial results - preserving the original order - and apply the operation to them. This is parallelization without headaches.
 
