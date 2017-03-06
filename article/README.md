@@ -2,7 +2,7 @@
 
 ## Introduction ##
 
-This is a short intro to *monoids*. Often times, when I speak with friends and colleagues about category theory, I am asked: "This is all very nice but what is in it for? Will I ever use it?". This article aims at showing a compelling example of a real world problem where a monoid is a much better approach than a naive, non monoid approach.
+This is a short intro to *monoids*. Often times, when I speak with friends and colleagues about [category theory][2], I am asked: "This is all very nice but what is in it for? Will I ever use it?". This article aims at showing a compelling example of a real world problem where a monoid is a much better approach than a naive, non monoid approach.
 
 ## So, what is a monoid? ##
 
@@ -98,3 +98,4 @@ object Aggregate {
 (c) Ricardo C. Miranda, 2017.
 
 [1]: https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.rdd.RDD
+[2]: https://en.wikipedia.org/wiki/Category_theory
