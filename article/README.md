@@ -53,10 +53,17 @@ To use the non monoid described above in Spark we need [aggregate][1]:
 ```
 def aggregate[U](zeroValue: U)(seqOp: (U, T) ⇒ U, combOp: (U, U) ⇒ U)(implicit arg0: ClassTag[U]): U
 
-Aggregate the elements of each partition, and then the results for all the partitions, using given combine functions and a neutral "zero value". This function can return a different result type, U, than the type of this RDD, T. Thus, we need one operation for merging a T into an U and one operation for merging two U's, as in scala.TraversableOnce. Both of these functions are allowed to modify and return their first argument instead of creating a new U to avoid memory allocation.
+Aggregate the elements of each partition, and then the results for all the partitions, using 
+given combine functions and a neutral "zero value". This function can return a different result 
+type, U, than the type of this RDD, T. Thus, we need one operation for merging a T into an U and 
+one operation for merging two U's, as in scala.TraversableOnce. Both of these functions are 
+allowed to modify and return their first argument instead of creating a new U to avoid memory 
+allocation.
 
-
-zeroValue: the initial value for the accumulated result of each partition for the seqOp operator, and also the initial value for the combine results from different partitions for the combOp operator - this will typically be the neutral element (e.g. Nil for list concatenation or 0 for summation)
+zeroValue: the initial value for the accumulated result of each partition for the seqOp operator, 
+and also the initial value for the combine results from different partitions for the combOp 
+operator - this will typically be the neutral element (e.g. Nil for list concatenation or 0 for 
+summation)
 
 seqOp: an operator used to accumulate results within a partition
 
