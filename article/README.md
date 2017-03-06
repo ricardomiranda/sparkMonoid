@@ -101,7 +101,14 @@ A possible solution to transform our join into a monoid is to use lists:
 ['a'] ++ ['b'] => ['a', 'b']
 ```
 
-Now that we have a monoid - remember that concatenation of lists is a monoid - it is possible to use Spark's reduce function. Lets look at a possible implementation in Scala.
+Now that we have a monoid - remember that concatenation of lists is a monoid - it is possible to use Spark's [reduce][2] function:
+
+```
+def reduce(f: (T, T) ⇒ T): T
+Reduces the elements of this RDD using the specified commutative and associative binary operator.
+```
+
+Lets look at a possible implementation in Scala.
 
 ```scala
 package uk.co.marionete.sparkMonoid
@@ -121,7 +128,14 @@ object Monadic {
 }
 ```
 
+## Conclusions ##
+
+I am pretty confident you agree with me that the reduce version if easier to read and understand than the aggregate version. I hope the next time you are about to write an aggregate function you will pause and consider the reduce function. Lets use category theory in the real world.
+
+As a final remark I want to tell you that this code is available at [GitHub][3].
+
 (c) Ricardo C. Miranda, 2017.
 
 [1]: https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.rdd.RDD
 [2]: https://en.wikipedia.org/wiki/Category_theory
+[3]: https://github.com/ricardomiranda/sparkMonoid
