@@ -8,7 +8,7 @@ This is a short intro to **monoids**. Often times, when I speak with friends and
 
 A monoid is a pure operation that takes two arguments and has the following characteristics:
 
-- **closure**, the operation over two elements produces an element of the same kind;
+- **closure**, the operation over two elements (of the same type) produces an element of the same kind;
 
 - **associativity**, if you have a set of ordered elements to combine, it produces the same result regardless of the order you do the pairwise operations; and
 
@@ -16,7 +16,7 @@ A monoid is a pure operation that takes two arguments and has the following char
 
 Addition of Natural numbers is a monoid. It follows the three above rules: addition of two integers produces an integer; it is associative and zero is the identity element. Addition is also commutative but that is not necessary to be a monoid.
 
-Concatenating lists is also a monoid operation. When you concatenate two lists you get a list. If you have lots of list to concatenate you can do it in any order you want as long as you keep their relative positions. The identity element is the empty list.
+Concatenating lists is also a monoid operation. When you concatenate two lists you get a list. If you have lots of lists to concatenate you can do it in any order you want as long as you keep their relative positions. The identity element is the empty list.
 
 If you have closure and associativity but not an identity element you have a **semigroup**.
 
@@ -24,7 +24,7 @@ If you have closure and associativity but not an identity element you have a **s
 
 A monoid is a parallelizable operation. If you have monoid and a list of elements to whom you want to apply it, you can chop it in any way, apply the operation to each section, and later on collect the partial results - preserving the original order - and apply the operation to them. This is parallelization without headaches.
 
-## A real world exmple in Spark ##
+## A real world example in Spark ##
 
 Here I will present a very simple operation, that is not a monoid, and use it in Spark with the aggregate function. Afterwards I will show how to transform this operation into a monoid. Having a monoid we can use Spark's reduce function.
 
