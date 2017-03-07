@@ -26,7 +26,7 @@ A monoid is a parallelizable operation. If you have monoid and a list of element
 
 ## A real world example in Spark ##
 
-Here I will present a very simple operation, that is not a monoid, and use it in Spark with the aggregate function. Afterwards I will show how to transform this operation into a monoid. Having a monoid we can use Spark's reduce function.
+Here I will present a very simple operation, that is not a monoid, and use it in Spark with the aggregate function. Afterwards I will show how to transform this operation into a monoid. Having a monoid we can use Spark's reduce function. Spark is chosen because is problem space where lots of developers face this problem. Spark is a distributed computing framework where being aware of this issue may prove a real benefit.
 
 ### Joining characters ###
 
@@ -43,6 +43,8 @@ The first solution that comes to mind is to create a string:
 ```
 
 The above operation is not a monoid; there is no closure on this operation. The operation's result is not of the same type as its arguments.
+
+In the  next section I will present a solution with Spark's aggregate function, that uses this non monoid approach. Right afterwards I will transform it into a monoid and show a solution with Spark's reduce function. 
 
 ### Using Spark's aggregate function ###
 
