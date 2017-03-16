@@ -17,7 +17,7 @@ class AggreateTest extends WordSpec with Matchers {
     "with elementis 'a', 'b', 'c' and 'd'" should {
       "produce string \"abcd\"" in {
 	val spark = sparkStart
-        Aggregate(Seq('a','b','c','d'), spark).agg shouldBe "abcd"
+        Aggregate(Seq('a','b','c','d'), spark).agg.toSet shouldBe Set('a', 'b', 'c', 'd')
         spark.stop()
       }
     }
@@ -25,7 +25,7 @@ class AggreateTest extends WordSpec with Matchers {
     "with element 'a'" should {
       "produce string \"a\"" in {
 	val spark = sparkStart
-        Aggregate(Seq('a'), spark).agg shouldBe "a"
+        Aggregate(Seq('a'), spark).agg.toSet shouldBe Set('a')
         spark.stop()
       }
     }
@@ -33,7 +33,7 @@ class AggreateTest extends WordSpec with Matchers {
     "with elements 'a' and 'b'" should {
       "produce string \"ab\"" in {
 	val spark = sparkStart
-        Aggregate(Seq('a','b'), spark).agg shouldBe "ab"
+        Aggregate(Seq('a','b'), spark).agg.toSet shouldBe Set('a', 'b')
         spark.stop()
       }
     }

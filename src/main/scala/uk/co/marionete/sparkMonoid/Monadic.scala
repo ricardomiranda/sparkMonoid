@@ -5,7 +5,7 @@ import org.apache.spark.rdd._
 
 case class Monadic(charactersRDD: RDD[Seq[Char]],
 	           spark: SparkSession) {
-  def red: String = this.charactersRDD.reduce{ (x, y) => x ++ y }.mkString
+  def red: Seq[Char]= this.charactersRDD.reduce{ (x, y) => x ++ y }
 }
 
 object Monadic {
